@@ -1,0 +1,31 @@
+{
+  "name": "anacare-pipeline",
+  "version": "4.0.0",
+  "type": "module",
+  "description": "AnaCare data pipeline — hospital MRFs + payer rates → Neon Postgres",
+  "scripts": {
+    "migrate":             "node scripts/01_migrate.js",
+    "ingest-providers":    "node scripts/03_ingest_providers.js",
+    "layer1":              "node scripts/04_layer1_hospital_mrfs.js",
+    "enrich-catalog":      "node scripts/02_seed_catalog.js",
+    "extract-payer-rates": "node scripts/04b_extract_payer_rates_from_hospital_mrfs.js",
+    "verify-urls":         "node scripts/00_discover_payer_urls.js",
+    "layer2-uhc":          "node scripts/05_layer2_payer_mrfs.js",
+    "layer2-bcbs":         "node scripts/05b_bcbs_plans.js",
+    "fill-estimated":      "node scripts/06_fill_estimated_prices.js",
+    "stats":               "node scripts/99_stats.js",
+    "full-pipeline":       "node scripts/00_run_all.js",
+    "resume-layer1":       "RESUME=true node scripts/04_layer1_hospital_mrfs.js",
+    "test-run":            "LAYER1_LIMIT=10 node scripts/00_run_all.js"
+  },
+  "dependencies": {
+    "pg":          "^8.11.3",
+    "node-fetch":  "^3.3.2",
+    "csv-parse":   "^5.5.6",
+    "p-limit":     "^5.0.0",
+    "p-retry":     "^6.2.0",
+    "dotenv":      "^16.4.5",
+    "stream-json": "^1.8.0",
+    "split2":      "^4.2.0"
+  }
+}

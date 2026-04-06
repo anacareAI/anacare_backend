@@ -1,0 +1,30 @@
+[2026-04-06T15:13:52.183Z] [INFO] === Layer 1: Hospital MRF Price Scraping ===
+[2026-04-06T15:13:52.184Z] [INFO] Concurrency: 8 | Resume: false | Limit: 10
+[2026-04-06T15:13:53.058Z] [INFO] Hospitals with MRF URLs to process: 10
+[2026-04-06T15:13:53.059Z] [INFO] Scraping: AIKEN REGIONAL MEDICAL CENTERS LLC → https://uhsfilecdn.eskycity.net/ac/232791808_aiken-regional-medical-ce
+[2026-04-06T15:13:53.069Z] [INFO] Scraping: AHS HILLCREST MEDICAL CENTER, LLC → https://coc.ardenthealthservices.com/2022/oklahoma/2022_HillcrestMedic
+[2026-04-06T15:13:53.072Z] [INFO] Scraping: AHN EMERUS WESTMORELAND LLC → https://www.ahnneighborhood.org/ahn-assets/uploads/forms/83-3698773_AH
+[2026-04-06T15:13:53.074Z] [INFO] Scraping: AHN EMERUS WESTMORELAND LLC → https://www.ahnneighborhood.org/ahn-assets/uploads/forms/83-3698773_AH
+[2026-04-06T15:13:53.076Z] [INFO] Scraping: AHN EMERUS WESTMORELAND LLC → https://www.ahnneighborhood.org/ahn-assets/uploads/forms/83-3698773_AH
+[2026-04-06T15:13:53.079Z] [INFO] Scraping: AHN EMERUS WESTMORELAND LLC → https://www.ahnneighborhood.org/ahn-assets/uploads/forms/83-3698773_AH
+[2026-04-06T15:13:53.080Z] [INFO] Scraping: ADVOCATE SHERMAN HOSPITAL → https://www.advocatehealth.com/assets/documents/hospital-pricing-infor
+[2026-04-06T15:13:53.081Z] [INFO] Scraping: ADVENTIST HEALTH DELANO → https://apps.para-hcfs.com/PTT/FinalLinks/Reports.aspx?dbName=dbDRMCDE
+[2026-04-06T15:13:53.260Z] [WARN]   JSON failed for ADVOCATE SHERMAN HOSPITAL, trying CSV: HTTP 404 https://www.advocatehealth.com/assets/documents/hos
+[2026-04-06T15:13:55.529Z] [INFO]   AIKEN REGIONAL MEDICAL CENTERS LLC: 94516 parsed → 8522 unique CPTs, 0 payer rates
+[2026-04-06T15:14:02.843Z] [WARN]   ❌ AHS HILLCREST MEDICAL CENTER, LLC: HTTP 404 https://coc.ardenthealthservices.com/2022/oklahoma/2022_HillcrestMedica
+[2026-04-06T15:14:02.843Z] [INFO] Scraping: ADVOCATE LUTHERAN GENERAL HOSPITAL → https://www.advocatehealth.com/assets/documents/hospital-pricing-infor
+[2026-04-06T15:14:02.845Z] [WARN]   ❌ ADVOCATE SHERMAN HOSPITAL: HTTP 404 https://www.advocatehealth.com/assets/documents/hospital-pricing-inform
+[2026-04-06T15:14:02.845Z] [INFO] Scraping: ALBANY MEDICAL CENTER HOSPITAL → https://www.amc.edu/spbs/PriceTransparency/Dec2021/141338307_AlbanyMed
+[2026-04-06T15:14:02.928Z] [WARN]   JSON failed for ADVOCATE LUTHERAN GENERAL HOSPITAL, trying CSV: HTTP 404 https://www.advocatehealth.com/assets/documents/hos
+[2026-04-06T15:14:03.041Z] [WARN]   ❌ AHN EMERUS WESTMORELAND LLC: HTTP 404 https://www.ahnneighborhood.org/ahn-assets/uploads/forms/83-3698773_AHN
+[2026-04-06T15:14:03.124Z] [WARN]   ❌ AHN EMERUS WESTMORELAND LLC: HTTP 404 https://www.ahnneighborhood.org/ahn-assets/uploads/forms/83-3698773_AHN
+[2026-04-06T15:14:03.211Z] [WARN]   ❌ AHN EMERUS WESTMORELAND LLC: HTTP 404 https://www.ahnneighborhood.org/ahn-assets/uploads/forms/83-3698773_AHN
+[2026-04-06T15:14:05.056Z] [WARN]   ❌ AHN EMERUS WESTMORELAND LLC: HTTP 404 https://www.ahnneighborhood.org/ahn-assets/uploads/forms/83-3698773_AHN
+[2026-04-06T15:14:12.226Z] [WARN]   ❌ ADVOCATE LUTHERAN GENERAL HOSPITAL: HTTP 404 https://www.advocatehealth.com/assets/documents/hospital-pricing-inform
+[2026-04-06T15:14:14.894Z] [WARN]   ❌ ALBANY MEDICAL CENTER HOSPITAL: HTTP 404 https://www.amc.edu/spbs/PriceTransparency/Dec2021/141338307_AlbanyMedi
+[2026-04-06T15:14:30.581Z] [INFO]   ADVENTIST HEALTH DELANO: 429547 parsed → 16842 unique CPTs, 429547 payer rates
+[2026-04-06T15:20:44.728Z] [OK]   ✅ AIKEN REGIONAL MEDICAL CENTERS LLC: 8522 SS rows, 0 NR rows, 8522 CPTs
+[2026-04-06T15:29:32.836Z] [OK]   ✅ ADVENTIST HEALTH DELANO: 16842 SS rows, 429547 NR rows, 16842 CPTs
+[2026-04-06T15:29:32.837Z] [INFO] Layer1 [10/10] 100.0% ✅2 ❌8 ⏭0 elapsed:940s eta:0s
+[2026-04-06T15:29:32.907Z] [OK] 
+Layer 1 complete!
