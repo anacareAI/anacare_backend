@@ -57,83 +57,16 @@ const CMS_HOSPITAL_URL = 'https://data.cms.gov/provider-data/api/1/datastore/que
 // 291900000X  Military Clinical Lab      — Tricare only, not commercial
 // 292200000X  Dental Laboratory          — dental, not medical
 // ─────────────────────────────────────────────────────────────────
+// In-scope taxonomy codes (per CLAUDE.md):
+//   282N00000X  General Acute Care Hospital   → hospital, transparency=true
+//   282NC0060X  Critical Access Hospital      → hospital, transparency=true
+//   282NC2000X  Children's Hospital           → hospital, transparency=true
+//   261QS0132X  Ambulatory Surgery Center     → asc,      transparency=false
 const NPPES_TYPES = [
-
-  // ── Hospitals (NPPES supplement to CMS dataset) ───────────────
-  { taxonomy: '282N00000X', search_term: 'General Acute Care Hospital', type: 'hospital',  label: 'General Acute Care Hospital', pages: 30 },
-  { taxonomy: '284300000X', search_term: 'Specialty Hospital',           type: 'hospital',  label: 'Specialty Hospital',           pages: 15 },
-
-  // ── Ambulatory Surgical Centers ───────────────────────────────
-  { taxonomy: '261QA1903X', search_term: 'Ambulatory Surgical',          type: 'asc',        label: 'Ambulatory Surgical Center',   pages: 75 },
-
-  // ── Urgent Care ───────────────────────────────────────────────
-  { taxonomy: '261QU0200X', search_term: 'Urgent Care',                  type: 'urgent_care',label: 'Urgent Care',                  pages: 75 },
-
-  // ── Emergency (freestanding ERs) ──────────────────────────────
-  { taxonomy: '261QE0002X', search_term: 'Emergency Care',               type: 'standalone', label: 'Freestanding ER',              pages: 15 },
-
-  // ── Imaging / Radiology ───────────────────────────────────────
-  { taxonomy: '261QR0200X', search_term: 'Radiology',                    type: 'imaging', label: 'Radiology Center',               pages: 40 },
-  { taxonomy: '261QM1200X', search_term: 'Magnetic Resonance Imaging',   type: 'imaging', label: 'MRI Center',                     pages: 20 },
-  { taxonomy: '261QR0206X', search_term: 'Mammography',                  type: 'imaging', label: 'Mammography Center',             pages: 15 },
-  { taxonomy: '261QR0207X', search_term: 'Mobile Mammography',           type: 'imaging', label: 'Mobile Mammography',             pages:  5 },
-  { taxonomy: '261QR0208X', search_term: 'Mobile Radiology',             type: 'imaging', label: 'Mobile Radiology',               pages: 10 },
-
-  // ── Surgical / Procedural ─────────────────────────────────────
-  { taxonomy: '261QE0800X', search_term: 'Endoscopy',                    type: 'standalone', label: 'Endoscopy Center',            pages: 25 },
-  { taxonomy: '261QS0112X', search_term: 'Oral and Maxillofacial Surgery',type: 'standalone', label: 'Oral & Maxillofacial Surgery',pages: 15 },
-  { taxonomy: '261QS0132X', search_term: 'Ophthalmologic Surgery',       type: 'standalone', label: 'Ophthalmologic Surgery',      pages: 15 },
-  { taxonomy: '261QL0400X', search_term: 'Lithotripsy',                  type: 'standalone', label: 'Lithotripsy Center',          pages: 10 },
-
-  // ── Oncology / Infusion ───────────────────────────────────────
-  { taxonomy: '261QX0200X', search_term: 'Oncology',                     type: 'standalone', label: 'Oncology Center',             pages: 20 },
-  { taxonomy: '261QX0203X', search_term: 'Oncology, Radiation',          type: 'standalone', label: 'Radiation Oncology Center',   pages: 20 },
-  { taxonomy: '261QI0500X', search_term: 'Infusion Therapy',             type: 'standalone', label: 'Infusion Therapy Center',     pages: 20 },
-
-  // ── Primary / Community Health ────────────────────────────────
-  { taxonomy: '261QP2300X', search_term: 'Primary Care',                 type: 'standalone', label: 'Primary Care Clinic',         pages: 75 },
-  { taxonomy: '261QF0400X', search_term: 'Federally Qualified Health Center', type: 'standalone', label: 'FQHC',                  pages: 40 },
-  { taxonomy: '261QC1500X', search_term: 'Community Health',             type: 'standalone', label: 'Community Health Center',     pages: 30 },
-  { taxonomy: '261QM1000X', search_term: 'Migrant Health',               type: 'standalone', label: 'Migrant Health Center',       pages: 10 },
-  { taxonomy: '261QR1300X', search_term: 'Rural Health',                 type: 'standalone', label: 'Rural Health Clinic',         pages: 25 },
-  { taxonomy: '261QH0100X', search_term: 'Health Service',               type: 'standalone', label: 'Health Service Clinic',       pages: 30 },
-  { taxonomy: '261QA0006X', search_term: 'Ambulatory Fertility',         type: 'standalone', label: 'Fertility Clinic',            pages: 10 },
-
-  // ── Multi-specialty / General ─────────────────────────────────
-  { taxonomy: '261Q00000X',  search_term: 'Clinic/Center',               type: 'standalone', label: 'Clinic/Center (General)',     pages: 40 },
-  { taxonomy: '261QM1300X',  search_term: 'Multi-Specialty',             type: 'standalone', label: 'Multi-Specialty Clinic',      pages: 25 },
-  { taxonomy: '261QM2500X',  search_term: 'Medical Specialty',           type: 'standalone', label: 'Medical Specialty Clinic',    pages: 25 },
-  { taxonomy: '261QC1800X',  search_term: 'Corporate Health',            type: 'standalone', label: 'Corporate Health Clinic',     pages: 10 },
-  { taxonomy: '261QX0100X',  search_term: 'Occupational Medicine',       type: 'standalone', label: 'Occupational Medicine',       pages: 20 },
-  { taxonomy: '261QP1100X',  search_term: 'Podiatric',                   type: 'standalone', label: 'Podiatric Clinic',            pages: 15 },
-
-  // ── Pain Management ───────────────────────────────────────────
-  { taxonomy: '261QP3300X', search_term: 'Pain',                         type: 'standalone', label: 'Pain Clinic',                 pages: 20 },
-
-  // ── Physical Therapy / Rehabilitation ─────────────────────────
-  { taxonomy: '261QP2000X',  search_term: 'Physical Therapy',            type: 'standalone', label: 'Physical Therapy Clinic',     pages: 40 },
-  { taxonomy: '261QR0400X',  search_term: 'Rehabilitation',              type: 'standalone', label: 'Rehabilitation Clinic',       pages: 30 },
-  { taxonomy: '261QR0401X',  search_term: 'Comprehensive Outpatient Rehabilitation', type: 'standalone', label: 'CORF Rehab Clinic', pages: 15 },
-  { taxonomy: '261QR0404X',  search_term: 'Cardiac Rehabilitation',      type: 'standalone', label: 'Cardiac Rehab Clinic',        pages: 10 },
-  { taxonomy: '261QR0800X',  search_term: 'Recovery Care',               type: 'standalone', label: 'Recovery Care Center',        pages: 10 },
-
-  // ── Dialysis / ESRD ───────────────────────────────────────────
-  { taxonomy: '261QE0700X', search_term: 'End-Stage Renal Disease',      type: 'standalone', label: 'ESRD / Dialysis Center',      pages: 25 },
-
-  // ── Hearing / Speech ──────────────────────────────────────────
-  { taxonomy: '261QH0700X', search_term: 'Hearing and Speech',           type: 'standalone', label: 'Hearing & Speech Clinic',     pages: 15 },
-
-  // ── Sleep Disorders ───────────────────────────────────────────
-  { taxonomy: '261QS1200X', search_term: 'Sleep Disorder Diagnostic',    type: 'standalone', label: 'Sleep Disorder Center',       pages: 10 },
-
-  // ── Behavioral / Mental Health ────────────────────────────────
-  { taxonomy: '261QM0801X', search_term: 'Mental Health',                type: 'standalone', label: 'Mental Health Clinic',        pages: 25 },
-  { taxonomy: '261QM0850X', search_term: 'Adult Mental Health',          type: 'standalone', label: 'Adult Mental Health Clinic',  pages: 15 },
-
-  // ── Labs ──────────────────────────────────────────────────────
-  { taxonomy: '291U00000X', search_term: 'Clinical Medical Laboratory',  type: 'lab', label: 'Clinical Medical Laboratory',       pages: 50 },
-  { taxonomy: '293D00000X', search_term: 'Physiological Laboratory',     type: 'lab', label: 'Physiological Laboratory',          pages: 10 },
-
+  { taxonomy: '282N00000X', search_term: 'General Acute Care Hospital', type: 'hospital', label: 'General Acute Care Hospital', pages: 30 },
+  { taxonomy: '282NC0060X', search_term: 'Critical Access Hospital',    type: 'hospital', label: 'Critical Access Hospital',    pages: 15 },
+  { taxonomy: '282NC2000X', search_term: "Children's Hospital",          type: 'hospital', label: "Children's Hospital",          pages: 10 },
+  { taxonomy: '261QS0132X', search_term: 'Ambulatory Surgical',          type: 'asc',      label: 'Ambulatory Surgery Center',   pages: 75 },
 ]
 
 async function fetchPages(url, label) {
@@ -184,7 +117,7 @@ async function fetchNPPES(taxonomy, searchTerm, type, pages) {
           zip:     (loc.postal_code || '').slice(0, 10),
           phone:   loc.telephone_number,
           source:  'nppes',
-          // Hospitals (282N, 284300) must publish MRF files per CMS rules
+          // Hospitals must publish MRF files per CMS rules; ASCs are voluntary
           has_transparency_data: (type === 'hospital'),
         })
       }
@@ -340,6 +273,18 @@ async function main() {
     } finally { client.release() }
   } catch (e) {
     log.error('CCN enrichment failed', { message: e.message })
+  }
+
+  // 4. Cleanup: delete legacy standalone providers (no longer in scope)
+  log.info('4/4 Deleting legacy standalone providers...')
+  try {
+    const c = await pool.connect()
+    try {
+      const r = await c.query(`DELETE FROM providers WHERE type = 'standalone' RETURNING npi`)
+      log.ok(`Deleted ${r.rowCount} standalone providers`)
+    } finally { c.release() }
+  } catch (e) {
+    log.error('Standalone cleanup failed', { message: e.message })
   }
 
   // Final count
